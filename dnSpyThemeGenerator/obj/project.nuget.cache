@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "D9vcTyAvdTpJaX+piwfjSTUMYszTp5mhul9TLON7/D6eb8Vgy8wShotNkEb19f0mOu7DWB7rAK2CBjmX0K+iMw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Downloads\\dnSpyThemeGenerator-master\\dnSpyThemeGenerator\\dnSpyThemeGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\commandlineparser\\2.8.0\\commandlineparser.2.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}
