@@ -13,6 +13,10 @@ namespace dnSpyThemeGenerator.Themes
 
         public Dictionary<string, Dictionary<string, string>> Attributes { get; } = new();
 
+        private RiderTheme()
+        {
+        }
+
         public static RiderTheme ReadFromStream(Stream stream)
         {
             var doc = XDocument.Load(stream);
@@ -59,22 +63,19 @@ namespace dnSpyThemeGenerator.Themes
             if (attributeOption.Attribute("baseAttributes") is { } baseAttr)
             {
                 var baseName = baseAttr.Value;
-                var newElement = attributeOption.Parent.Nodes().OfType<XElement>().SingleOrDefault(x => x.Attribute("name").Value == baseName);
+                var newElement = attributeOption.Parent
+                    .Nodes()
+                    .OfType<XElement>()
+                    .SingleOrDefault(x => x.Attribute("name").Value == baseName);
                 return newElement is null ? null : ParseAttributeOption(newElement);
             }
             var attributeValue = (XElement) attributeOption.Nodes().Single();
             Dictionary<string, string> dic = new();
             foreach (var option in attributeValue.Nodes().Cast<XElement>())
             {
-                try
-                {
-                    var name = option.Attribute("name").Value;
-                    var value = option.Attribute("value").Value;
-                    dic[name] = value;
-                }
-                catch
-                {
-                }
+                var name = option.Attribute("name").Value;
+                var value = option.Attribute("value").Value;
+                dic[name] = value;
             }
             return dic;
         }

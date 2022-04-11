@@ -23,6 +23,10 @@ namespace dnSpyThemeGenerator.Themes
 
         public Dictionary<string, Dictionary<string, string>> Colors { get; } = new();
 
+        private DnSpyTheme()
+        {
+        }
+
         public static DnSpyTheme ReadFromStream(Stream stream)
         {
             var doc = XDocument.Load(stream);

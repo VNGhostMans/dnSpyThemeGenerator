@@ -1,4 +1,4 @@
-# dnSpyThemeGenerator
+# dnSpy Theme Generator
 
 Thanks to HoLLy-HaCKeR. 
 Generates dnSpy themes based on IntelliJ themes. An example of such themes can

@@ -98,11 +98,11 @@ namespace dnSpyThemeGenerator.Converters
             // Settings list background
             {("appsettingstreeview", "bg"), "GUTTER_BACKGROUND"},
             // Context menu
-            // {("contextmenubackground", "bg"), "PROMOTION_PANE"},
-            // {("contextmenurectanglefill", "bg"), "PROMOTION_PANE"},
+            {("contextmenubackground", "bg"), "PROMOTION_PANE"},
+            {("contextmenurectanglefill", "bg"), "PROMOTION_PANE"},
             // Some controls
-            // {("commoncontrolsbutton", "bg"), "GUTTER_BACKGROUND"},
-            // {("commoncontrolshover", "bg"), "GUTTER_BACKGROUND"},
+            {("commoncontrolsbutton", "bg"), "GUTTER_BACKGROUND"},
+            {("commoncontrolshover", "bg"), "GUTTER_BACKGROUND"},
         };
 
         private static readonly Dictionary<(string key, string attribute), string> HardcodedColors = new()
@@ -134,24 +134,30 @@ namespace dnSpyThemeGenerator.Converters
                         if (riderAttributeName is null)
                         {
                             if (dnSpyAttributeName != "name")
+                            {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Debug.WriteLine("Skipping unknown attribute " + dnSpyAttributeName);
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
                         }
                         else if (!source.Attributes.TryGetValue(riderAttributeKey, out var riderAttributes))
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Debug.WriteLine("Couldn't resolve rider attribute " + dnSpyAttributeName);
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         else if (!riderAttributes.TryGetValue(riderAttributeName, out var riderValue))
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Debug.WriteLine("Couldn't find attribute in rider attributes: " + riderAttributeName);
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         else
                         {
                             dnSpyAttributes[dnSpyAttributeName] = ConvertColor(riderValue);
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine($"Mapping attribute {dnSpyColorName}.{dnSpyAttributeName}");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                     }
                     else if (ColorMap.TryGetValue((dnSpyColorName, dnSpyAttributeName), out var riderColorName))
@@ -160,18 +166,21 @@ namespace dnSpyThemeGenerator.Converters
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Debug.WriteLine($"Couldn't find color {riderColor} in rider theme");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         else
                         {
                             dnSpyAttributes[dnSpyAttributeName] = ConvertColor(riderColor);
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine($"Mapping color {dnSpyColorName}.{dnSpyAttributeName}");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Debug.WriteLine("Skipping unknown key " + dnSpyColorName);
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
             }
